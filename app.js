@@ -127,11 +127,13 @@ class UI {
         const div = document.createElement("div");
         // div presente dans le index.html cart-item ligne 59
         div.classList.add("cart-item");
-        div.innerHTML = ` <img src=${item.image} alt="product" />
+        div.innerHTML = `<img src=${item.image}
+        alt="product" />
     <div>
         <h4>${item.title}</h4>
         <h5>$${item.price}</h5>
-        <span class="remove-item" data-id=${item.id}>remove</span>
+        <span class="remove-item"
+        data-id=${item.id}>remove</span>
     </div>
     <div>
         <i class="fas fa-chevron-up" data-id=${item.id}></i>
@@ -140,6 +142,7 @@ class UI {
     </div>`;
         cartContent.appendChild(div);
     }
+
     //Propriété CSS transapentBcg faire afficher la fenettre des commandes
     showCart() {
         cartOverlay.classList.add("transparentBcg");
@@ -150,8 +153,8 @@ class UI {
         this.setCartValues(cart);
         this.populateCart(cart);
         //Fermer la fenetre de list commandes avec le bouton "X" avec callback function "showCart" "hideCart" ligne 136 et 152
-        cartBtn.addEventListener("click", this.showCart);
-        closeCartBtn.addEventListener("click", this.hideCart);
+        cartBtn.addEventListener('click', this.showCart);
+        closeCartBtn.addEventListener('click', this.hideCart);
     }
     populateCart(cart) {
         cart.forEach(item => this.addCartItem(item));
@@ -162,7 +165,7 @@ class UI {
     }
     cartLogic() {
         //Methode pour clear les items dans la cart List via "Clear Cart" Button
-        cleaerCartBtn.addEventListener("click", () => {
+        clearCartBtn.addEventListener("click", () => {
             this.clearCart();
         });
         //removing items from cart "remove" dans la cart List commandes
@@ -240,8 +243,8 @@ class Storage {
     }
     // if the method doesn't exist we gona get an empty array
     static getCart() {
-        return localStorage.getItem("cart") ?
-            JSON.parse(localStorage.getItem("cart")) : [];
+        return localStorage.getItem('cart') ?
+            JSON.parse(localStorage.getItem('cart')) : [];
     }
 }
 
@@ -260,5 +263,6 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .then(() => {
             ui.getBagButtons();
+            ui.cartLogic()
         });
 });
